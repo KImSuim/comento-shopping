@@ -7,6 +7,7 @@ const Home = () => {
         <div>
             <div>
                 <Navigation/>
+                <GrayThinLine/>
                 <ThemeSection>
                     <ThemeButton themeName={"#겨울방한템"}/>
                     <ThemeButton themeName={"#따순머그컵"}/>
@@ -36,6 +37,12 @@ const Home = () => {
     );
 };
 
+const GrayThinLine = styled.div`
+    height: 1px;
+    width: 100%;
+    background: #eeeeee;
+`;
+
 const ThemeSection = styled.div`
     display:flex;
     gap:12px;
@@ -44,7 +51,7 @@ const ThemeSection = styled.div`
 
 const GrayLine = styled.div`
     height: 8px;
-    width: 10px;
+    width: 100%;
     background: #eeeeee;
 `;
 
