@@ -2,21 +2,57 @@ import Navigation from "../components/Navigation";
 import ThemeButton from "../components/ThemeButton";
 import ProductCard from "../components/ProductCard";
 import styled from "styled-components";
+import {mockTheme1Produdcts, mockTheme2Produdcts} from "../data/mockData"
+import { useEffect, useState } from "react";
+
 const Home = () => {
+    //state(싱태)
+    const [products, setProducts] = useState();
+
+    useEffect(() => {}, {});
+
+    const onClickThemeButton = (themeId) => {
+        if(themeId === 1){
+            setProducts(mockTheme1Produdcts);
+        }else if (themeId === 2){
+            setProducts(mockTheme2Produdcts);
+        }
+        console.log("버튼 누름 ")
+    };
+
     return (
         <div>
             <div>
                 <Navigation/>
-                <GrayThinLine/>
+                {/* <GrayThinLine/> */}
                 <ThemeSection>
-                    <ThemeButton themeName={"#겨울방한템"}/>
-                    <ThemeButton themeName={"#따순머그컵"}/>
+                    <ThemeButton themeName={"#겨울방한템"} onClick={()=>onClickThemeButton(1)}/>
+                    <ThemeButton themeName={"#여름더워요"} onClick={()=>onClickThemeButton(2)}/>
                 </ThemeSection>
 
                 <GrayLine/>
             </div>
             <ProductSection>
-                {/* ProductCard*/}
+                {/*mockDate list를 화면에 노출하자*/}
+
+                {/* 삼항연산자 */}
+                {products ? (
+                    products.map((product) => (
+                        <ProductCard
+                            name={product.name}
+                            description={product.description}
+                            thumbnail={product.thumbnail}
+                        />
+                    // <div>
+                    //     <div>{product.id}</div>
+                    //     <div>{product.name}</div>
+                    //     <div>{product.description}</div>
+                    // </div>
+                    ))
+                ) : (
+                    <div>테마를 선택해주세요</div>
+                )}
+                {/* ProductCard*
                 <ProductCard
                     name="비숑 블랙 머그잔"
                     description="쌀쌀한 날씨에 따뜻한 우유, 커피 한잔하기 좋은 블랙 & 화이트 비숑 머그잔입니다."
@@ -31,7 +67,7 @@ const Home = () => {
                     name="벨루즈까사 솜사탕 파스텔 머그 4종 세트"
                     description="솜사탕처럼 부드러운 쉐입에 스트라이프 조각이 더해져 심플하면서도 세련된 파스텔 컬러의 머그"
                     thumbnail="https://raw.githubusercontent.com/congchu/coment-shop-server/master/assets/images/product3.jpg"
-                />
+                />*/}
             </ProductSection>
         </div>
     );
